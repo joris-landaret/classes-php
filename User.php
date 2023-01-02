@@ -1,5 +1,16 @@
 <?php
 
+// Connexion à la base de donné
+
+$mysqli = new mysqli("localhost","root","","classes",3307);
+
+if ($mysqli) {
+    echo "connexion établie <br />";
+  }
+  else { 
+    die(mysqli_connect_error());
+  }
+
 // Création classe USER
 class User {
 
@@ -21,44 +32,48 @@ class User {
 
     //Mehtodes CRUD (Create / Read / Update / Delete)
 
-    public function $register($login, $password, $email, $firstname, $lastname){
-        echo "ok";
+    public function register($login, $password, $email, $firstname, $lastname){
+        return $this->login;
     }
 
-    public function $connect($login; $password){
-        echo "ok";
+    public function connect($login, $password){
+        return $this->login;
     }
 
-    public function $disconnect(){
-        echo "ok";
+    public function disconnect(){
+        return $this->login;
     }
 
-    public function $delete(){
-        echo "ok";
+    public function delete(){
+        return $this->login;
     }
 
-    public function $update($login, $password, $email, $firstname, $lastname){
-        echo "ok";
+    public function update($login, $password, $email, $firstname, $lastname){
+        return $this->login;
     }
 
-    public function $isConnected(){
-        echo "ok";
+    public function isConnected(){
+        return $this->login;
     }
 
-    public function $getAllinfos(){
-        echo "ok";
+    public function getAllinfos(){
+        return $this->login;
     }
-    public function $getLogin(){
-        echo "ok";
+
+    public function getLogin(){
+        return $this->login;
     }
-    public function $getEmail(){
-        echo "ok";
+
+    public function getEmail(){
+        return $this->login;
     }
-    public function $getFirstname(){
-        echo "ok";
+
+    public function getFirstname(){
+        return $this->login;
     }
-    public function $getLastname(){
-        echo "ok";
+
+    public function getLastname(){
+        return $this->login;
     }
 }
 
