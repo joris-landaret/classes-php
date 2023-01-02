@@ -1,17 +1,9 @@
 <?php
 
-// Connexion à la base de donné
-
-$mysqli = new mysqli("localhost","root","","classes",3307);
-
-if ($mysqli) {
-    echo "connexion établie <br />";
-  }
-  else { 
-    die(mysqli_connect_error());
-  }
-
 // Création classe USER
+
+use User as GlobalUser;
+
 class User {
 
     // Attributs
@@ -27,13 +19,28 @@ class User {
 
     public function __construct()
     {
-        echo "ok";
+        // Connexion à la base de donné
+
+        $mysqli = new mysqli("localhost","root","","classes",3307);
+
+        if ($mysqli) {
+            echo "connexion établie <br />";
+        }
+        else { 
+            die(mysqli_connect_error());
+        }
+
+        $request = $mysqli -> query("SELECT * FROM utilisateurs");
+
+        $request_fetch_all = $request -> fetch_all();
+
+        var_dump($request_fetch_all);
     }
 
     //Mehtodes CRUD (Create / Read / Update / Delete)
 
     public function register($login, $password, $email, $firstname, $lastname){
-        return $this->login;
+       
     }
 
     public function connect($login, $password){
@@ -76,5 +83,8 @@ class User {
         return $this->login;
     }
 }
+
+$sarlas = new User();
+//var_dump(__construct($mysqli));
 
 ?>
