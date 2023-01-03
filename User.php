@@ -15,6 +15,7 @@ class User {
     public $firstname;
     public $lastname;
     private $mysqli;
+    private $request_fetch_all;
     //public $request = $mysqli->query($sql);
     //private $mysqli = new mysqli("localhost","root","","classes",3307);
 
@@ -35,9 +36,9 @@ class User {
 
         $request = $this->mysqli -> query("SELECT * FROM utilisateurs");
 
-        $request_fetch_all = $request -> fetch_all();
+        $this->request_fetch_all = $request -> fetch_all();
 
-        var_dump($request_fetch_all);
+        var_dump($this->request_fetch_all);
 
     }
 
@@ -51,9 +52,24 @@ class User {
         $this->firstname=$firstname;
         $this->lastname=$lastname;
 
-        $sql = "INSERT INTO `utilisateurs` (`login`,`password`,`email`,`firstname`,`lastname`) 
-        VALUE ('$login','$password', '$email', '$firstname', '$lastname')";
-        $request2 = $this->mysqli -> query($sql);
+        $log_ok = false;
+
+        foreach($this->request_fetch_all as $user){
+            if($login == $user [1]){
+                $log_ok = false;
+                //break;
+            }
+            else{$log_ok = true;}
+        }
+        
+        if($log_ok == true){
+
+            $sql = "INSERT INTO `utilisateurs` (`login`,`password`,`email`,`firstname`,`lastname`) 
+            VALUE ('$login','$password', '$email', '$firstname', '$lastname')";
+            $request2 = $this->mysqli -> query($sql);
+            
+        }
+        else'<p>Le nom du login est déja utilisé</p>';
         
         return "
         <table border = 1 >
