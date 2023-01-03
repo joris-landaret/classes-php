@@ -14,6 +14,9 @@ class User {
     public $email;
     public $firstname;
     public $lastname;
+    private $mysqli;
+    //public $request = $mysqli->query($sql);
+    //private $mysqli = new mysqli("localhost","root","","classes",3307);
 
     // Construct
 
@@ -21,26 +24,36 @@ class User {
     {
         // Connexion à la base de donné
 
-        $mysqli = new mysqli("localhost","root","","classes",3307);
+        $this->mysqli = new mysqli("localhost","root","","classes",3307);
 
-        if ($mysqli) {
+        if ($this->mysqli) {
             echo "connexion établie <br />";
         }
         else { 
             die(mysqli_connect_error());
         }
 
-        $request = $mysqli -> query("SELECT * FROM utilisateurs");
+        $request = $this->mysqli -> query("SELECT * FROM utilisateurs");
 
         $request_fetch_all = $request -> fetch_all();
 
         var_dump($request_fetch_all);
+
     }
 
     //Mehtodes CRUD (Create / Read / Update / Delete)
 
     public function register($login, $password, $email, $firstname, $lastname){
-       
+        
+        $this->login=$login;
+        $this->password=$password;
+        $this->email=$email;
+        $this->firstname=$firstname;
+        $this->lastname=$lastname;
+
+        $sql = "INSERT INTO `utilisateurs` (`login`,`password`,`email`,`firstname`,`lastname`) 
+        VALUE ('$login','$password', '$email', '$firstname', '$lastname')";
+        $request2 = $this->mysqli -> query($sql);
     }
 
     public function connect($login, $password){
@@ -84,7 +97,12 @@ class User {
     }
 }
 
+// Création d'objets
+
 $sarlas = new User();
+$sarlas->register('Sarlas', 'sarlas', 'sarlas@sarlas.com', 'firstsarlas', 'lastsarlas');
 //var_dump(__construct($mysqli));
+$sarlas->disconnect();
+
 
 ?>
