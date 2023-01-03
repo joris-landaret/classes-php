@@ -54,6 +54,24 @@ class User {
         $sql = "INSERT INTO `utilisateurs` (`login`,`password`,`email`,`firstname`,`lastname`) 
         VALUE ('$login','$password', '$email', '$firstname', '$lastname')";
         $request2 = $this->mysqli -> query($sql);
+        
+        return "
+        <table border = 1 >
+            <tr>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+            </tr>
+            <tr>
+                <td>$login</td>
+                <td>$password</td>
+                <td>$email</td>
+                <td>$firstname</td>
+                <td>$lastname</td>
+            </tr>
+        </table>";
     }
 
     public function connect($login, $password){
@@ -98,11 +116,10 @@ class User {
 }
 
 // Création d'objets
-
 $sarlas = new User();
-$sarlas->register('Sarlas', 'sarlas', 'sarlas@sarlas.com', 'firstsarlas', 'lastsarlas');
-//var_dump(__construct($mysqli));
-$sarlas->disconnect();
+
+//initiliaser les attribut de l'objet
+echo $sarlas->register('Sarlas', 'sarlas', 'sarlas@sarlas.com', 'firstsarlas', 'lastsarlas');
 
 
 ?>
