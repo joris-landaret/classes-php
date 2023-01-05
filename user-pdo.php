@@ -40,7 +40,6 @@ class User {
             die(mysqli_connect_error());
         }
 
-        
         $request = $this->mysqli -> prepare("SELECT * FROM utilisateurs");
         $request->execute(array());
 
@@ -51,7 +50,8 @@ class User {
     }
 
     //Mehtodes CRUD (Create / Read / Update / Delete)
-
+    
+        //ENREGISTRER LES DONNEES DANS LA BDD
     public function register($login, $password, $email, $firstname, $lastname){
         
         $this->login=$login;
@@ -60,6 +60,7 @@ class User {
         $this->firstname=$firstname;
         $this->lastname=$lastname;
 
+        // SI LE LOGIN EST LE MEME
         $log_ok = false;
 
         foreach($this->request_fetch_all as $user){
@@ -72,6 +73,7 @@ class User {
         
         if($log_ok == true){
 
+            // ENVOI DE LA REQUÊTE
             $sql = "INSERT INTO `utilisateurs` (`login`,`password`,`email`,`firstname`,`lastname`) 
             VALUE (?,?,?,?,?)";
             $request2 = $this->mysqli -> prepare($sql);
@@ -79,23 +81,6 @@ class User {
         }
         else'<p>Le nom du login est déja utilisé</p>';
         
-        return "
-        <table border = 1 >
-            <tr>
-                <th>Login</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-            </tr>
-            <tr>
-                <td>$login</td>
-                <td>$password</td>
-                <td>$email</td>
-                <td>$firstname</td>
-                <td>$lastname</td>
-            </tr>
-        </table>";
     }
 
     public function connect($login, $password){
