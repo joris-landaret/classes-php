@@ -49,9 +49,9 @@ class User {
 
     }
 
-    //Mehtodes CRUD (Create / Read / Update / Delete)
-    
-        //ENREGISTRER LES DONNEES DANS LA BDD
+    //  //Mehtodes CRUD (Create / Read / Update / Delete)
+
+    //ENREGISTRER LES DONNEES DANS LA BDD
     public function register($login, $password, $email, $firstname, $lastname){
         
         $this->login=$login;
@@ -83,9 +83,31 @@ class User {
         
     }
 
+    //CONNEXION
     public function connect($login, $password){
-        return $this->login;
+        
+        $log_ok = false;
+        //var_dump($log_ok);
+
+        foreach($this->request_fetch_all as $user ){
+            if($login === $user[1] && $password === $user[2]){
+                $log_ok = true;
+                echo "ok2";
+                $_SESSION['login'] = $user[1];
+                $_SESSION['id'] = $user[0];
+                //header("location:index.php");
+
+            }
+            else {
+                echo "login ou mdp mauvais";
+                //break;
+                $log_ok = false;
+            }
+        } 
+
     }
+
+        
 
     public function disconnect(){
         return $this->login;
@@ -125,10 +147,15 @@ class User {
 }
 
 // Création d'objets
+// $sarlas = new User();
+// $toto = new User();
+// $red = new User();
 $col = new User();
 
 //initiliaser les attribut de l'objet
-echo $col->register('col', 'col', 'col@col.com', 'firstcol', 'lastcol');
+    //echo $col->register('col', 'col', 'col@col.com', 'firstcol', 'lastcol');
 
+//connexion à la session
+    $col->connect('col', 'col');
 
 ?>
