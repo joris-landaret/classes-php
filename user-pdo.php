@@ -44,7 +44,7 @@ class User {
         $request = $this->mysqli -> prepare("SELECT * FROM utilisateurs");
         $request->execute(array());
 
-        $this->request_fetch_all = $request -> fetch();
+        $this->request_fetch_all = $request -> fetchAll();
 
         var_dump($this->request_fetch_all);
 
@@ -140,10 +140,10 @@ class User {
 }
 
 // Création d'objets
-$toto = new User();
+$col = new User();
 
 //initiliaser les attribut de l'objet
-//echo $sarlas->register('Sarlas', 'sarlas', 'sarlas@sarlas.com', 'firstsarlas', 'lastsarlas');
+echo $col->register('col', 'col', 'col@col.com', 'firstcol', 'lastcol');
 
 
 ?>
