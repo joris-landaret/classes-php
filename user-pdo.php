@@ -100,7 +100,7 @@ class User {
 
             }
             else {
-                echo "login ou mdp mauvais";
+                echo "<p>login ou mdp mauvais</p>";
                 //break;
                 $log_ok = false;
             }
@@ -164,13 +164,16 @@ class User {
     $col = new User();
 
 //initiliaser les attribut de l'objet
-    //echo $col->register('col', 'col', 'col@col.com', 'firstcol', 'lastcol');
+    //$col->register('col', 'col', 'col@col.com', 'firstcol', 'lastcol');
 
 //connexion à la session
-    $col->connect('col', 'col');
+    //$col->connect('col', 'col');
 
 //DECONNEXION
     //$col->disconnect();
 
 //DECONNEXION ET EFFACER DE LA BDD
+
+//Retourne le login de l’utilisateur
+    echo $col->getlogin();
 ?>
