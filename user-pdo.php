@@ -116,34 +116,42 @@ class User {
         //session_start();
     }
 
+    //DECONNEXION ET EFFACER DE LA BDD
     public function delete(){
         return $this->login;
     }
 
+    //Met à jour les attributs de l’objet, et modifie les informations en base de données
     public function update($login, $password, $email, $firstname, $lastname){
         return $this->login;
     }
 
+    ////Retourne un booléen (true ou false) permettant de savoir si un utilisateur est connecté ou non
     public function isConnected(){
         return $this->login;
     }
 
+    //Retourne un tableau contenant l’ensemble des informations de l’utilisateur
     public function getAllinfos(){
         return $this->login;
     }
 
+    //Retourne le login de l’utilisateur
     public function getLogin(){
         return $this->login;
     }
 
+    //Retourne l’email de l’utilisateur
     public function getEmail(){
         return $this->login;
     }
 
+    //Retourne le firstname de l’utilisateur
     public function getFirstname(){
         return $this->login;
     }
 
+    //Retourne le lastname de l’utilisateur
     public function getLastname(){
         return $this->login;
     }
@@ -162,5 +170,7 @@ class User {
     $col->connect('col', 'col');
 
 //DECONNEXION
-    $col->disconnect();
+    //$col->disconnect();
+
+//DECONNEXION ET EFFACER DE LA BDD
 ?>
