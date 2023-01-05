@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Création classe USER
 
@@ -108,9 +109,11 @@ class User {
     }
 
         
-
+    //DECONNEXION
     public function disconnect(){
-        return $this->login;
+        //session_start();
+        session_destroy();
+        //session_start();
     }
 
     public function delete(){
@@ -147,10 +150,10 @@ class User {
 }
 
 // Création d'objets
-// $sarlas = new User();
-// $toto = new User();
-// $red = new User();
-$col = new User();
+    // $sarlas = new User();
+    // $toto = new User();
+    // $red = new User();
+    $col = new User();
 
 //initiliaser les attribut de l'objet
     //echo $col->register('col', 'col', 'col@col.com', 'firstcol', 'lastcol');
@@ -158,4 +161,6 @@ $col = new User();
 //connexion à la session
     $col->connect('col', 'col');
 
+//DECONNEXION
+    $col->disconnect();
 ?>
